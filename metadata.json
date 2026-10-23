@@ -1,0 +1,10 @@
+{
+  "name": "ClairProduit - Analyseur de Produits & Code-barres",
+  "description": "Scannez et analysez la composition et la qualité des aliments, boissons, cosmétiques et soins à l'international. / فاحص المنتجات الغذائية والتجميلية في العالم",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
