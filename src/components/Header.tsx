@@ -9,7 +9,7 @@ interface HeaderProps {
   onOpenScanner: () => void;
   onOpenGuide: () => void;
   onOpenAndroidCode: () => void;
-  onOpenPlayStoreGuide: () => void;
+  onOpenPlayStoreGuide?: () => void;
   activeTab: 'home' | 'history' | 'favorites';
   onSelectTab: (tab: 'home' | 'history' | 'favorites') => void;
 }
@@ -20,7 +20,6 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenScanner,
   onOpenGuide,
   onOpenAndroidCode,
-  onOpenPlayStoreGuide,
   activeTab,
   onSelectTab
 }) => {
@@ -59,17 +58,6 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Scan className="w-4 h-4 animate-pulse" />
             <span className="hidden sm:inline">{t.scan}</span>
-          </button>
-
-          {/* Guide Google Play débutant */}
-          <button
-            onClick={onOpenPlayStoreGuide}
-            className="flex items-center gap-1.5 bg-linear-to-r from-amber-500 to-emerald-600 hover:from-amber-600 hover:to-emerald-700 text-white font-bold text-xs sm:text-xs px-2.5 sm:px-3 py-2 rounded-xl shadow-xs active:scale-95 transition-all"
-            title="Comment publier sur Google Play sans coder"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">Google Play (Débutant)</span>
-            <span className="md:hidden">Play Store</span>
           </button>
 
           {/* Android Code Project Button */}

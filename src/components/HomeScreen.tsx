@@ -19,7 +19,6 @@ interface HomeScreenProps {
   setSearchQuery: (q: string) => void;
   selectedCategory: ProductCategory;
   setSelectedCategory: (cat: ProductCategory) => void;
-  onOpenPlayStoreGuide?: () => void;
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({
@@ -32,8 +31,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   searchQuery,
   setSearchQuery,
   selectedCategory,
-  setSelectedCategory,
-  onOpenPlayStoreGuide
+  setSelectedCategory
 }) => {
   const t = translations[language];
 
@@ -120,34 +118,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
         </div>
       </div>
-
-      {/* Beginner Google Play & Phone Install Banner */}
-      {onOpenPlayStoreGuide && (
-        <div 
-          onClick={onOpenPlayStoreGuide}
-          className="p-3.5 sm:p-4 rounded-2xl bg-linear-to-r from-amber-500/10 via-emerald-500/10 to-teal-500/10 border border-emerald-200/90 hover:border-emerald-500 hover:shadow-xs transition-all cursor-pointer flex items-center justify-between gap-3"
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-linear-to-tr from-amber-500 to-emerald-600 text-white flex items-center justify-center shadow-xs shrink-0">
-              <Sparkles className="w-4 h-4" />
-            </div>
-            <div>
-              <h4 className="font-bold text-slate-900 text-xs sm:text-sm">
-                {language === 'ar' ? 'كيف تنشر التطبيق على متجر Google Play بدون برمجة ؟' : 'Comment publier ClairProduit sur Google Play sans coder ?'}
-              </h4>
-              <p className="text-[11px] text-slate-600">
-                {language === 'ar' 
-                  ? 'دليل مبسط للمبتدئين: تحويل التطبيق لملف AAB رسمي بضغطة زر وتثبيته على هاتفك فوراً.'
-                  : 'Guide pas-à-pas débutant : générez le fichier .aab prêt pour le Play Store en 1 clic.'}
-              </p>
-            </div>
-          </div>
-          <span className="shrink-0 text-xs font-bold text-emerald-700 bg-white px-2.5 py-1.5 rounded-xl border border-emerald-200 shadow-2xs hidden sm:inline-flex items-center gap-1">
-            <span>Voir le guide</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </span>
-        </div>
-      )}
 
       {/* Category Selection Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">

@@ -13,7 +13,6 @@ import { ProductDetailModal } from './components/ProductDetailModal';
 import { HistoryAndFavorites } from './components/HistoryAndFavorites';
 import { AndroidCodeModal } from './components/AndroidCodeModal';
 import { EvaluationGuideModal } from './components/EvaluationGuideModal';
-import { PlayStoreBeginnerGuideModal } from './components/PlayStoreBeginnerGuideModal';
 import { fetchProductByBarcode, searchProducts } from './services/openFoodFacts';
 import { 
   getStoredLanguage, saveStoredLanguage, 
@@ -34,7 +33,6 @@ export default function App() {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [isAndroidCodeOpen, setIsAndroidCodeOpen] = useState(false);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
-  const [isPlayStoreGuideOpen, setIsPlayStoreGuideOpen] = useState(false);
 
   // Selected Product & History & Favorites
   const [selectedProduct, setSelectedProduct] = useState<ProductData | null>(null);
@@ -170,7 +168,6 @@ export default function App() {
         onOpenScanner={() => setIsScannerOpen(true)}
         onOpenGuide={() => setIsGuideOpen(true)}
         onOpenAndroidCode={() => setIsAndroidCodeOpen(true)}
-        onOpenPlayStoreGuide={() => setIsPlayStoreGuideOpen(true)}
         activeTab={activeTab}
         onSelectTab={setActiveTab}
       />
@@ -189,7 +186,6 @@ export default function App() {
             setSearchQuery={setSearchQuery}
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
-            onOpenPlayStoreGuide={() => setIsPlayStoreGuideOpen(true)}
           />
         )}
 
@@ -297,12 +293,6 @@ export default function App() {
       <EvaluationGuideModal
         isOpen={isGuideOpen}
         onClose={() => setIsGuideOpen(false)}
-        language={language}
-      />
-
-      <PlayStoreBeginnerGuideModal
-        isOpen={isPlayStoreGuideOpen}
-        onClose={() => setIsPlayStoreGuideOpen(false)}
         language={language}
       />
     </div>
