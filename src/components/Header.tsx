@@ -1,15 +1,13 @@
 import React from 'react';
 import { Language } from '../types/product';
 import { translations } from '../i18n/translations';
-import { Scan, Sparkles, BookOpen, Smartphone, Globe2 } from 'lucide-react';
+import { Scan, BookOpen, Globe2 } from 'lucide-react';
 
 interface HeaderProps {
   language: Language;
   onLanguageChange: (lang: Language) => void;
   onOpenScanner: () => void;
   onOpenGuide: () => void;
-  onOpenAndroidCode: () => void;
-  onOpenPlayStoreGuide?: () => void;
   activeTab: 'home' | 'history' | 'favorites';
   onSelectTab: (tab: 'home' | 'history' | 'favorites') => void;
 }
@@ -19,7 +17,6 @@ export const Header: React.FC<HeaderProps> = ({
   onLanguageChange,
   onOpenScanner,
   onOpenGuide,
-  onOpenAndroidCode,
   activeTab,
   onSelectTab
 }) => {
@@ -58,16 +55,6 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Scan className="w-4 h-4 animate-pulse" />
             <span className="hidden sm:inline">{t.scan}</span>
-          </button>
-
-          {/* Android Code Project Button */}
-          <button
-            onClick={onOpenAndroidCode}
-            className="hidden lg:flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-xs px-2.5 py-2 rounded-xl active:scale-95 transition-all"
-            title={t.androidTitle}
-          >
-            <Smartphone className="w-3.5 h-3.5 text-emerald-600" />
-            <span>Code Kotlin</span>
           </button>
 
           {/* Guide Button */}

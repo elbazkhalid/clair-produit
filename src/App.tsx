@@ -11,7 +11,6 @@ import { HomeScreen } from './components/HomeScreen';
 import { BarcodeScannerModal } from './components/BarcodeScannerModal';
 import { ProductDetailModal } from './components/ProductDetailModal';
 import { HistoryAndFavorites } from './components/HistoryAndFavorites';
-import { AndroidCodeModal } from './components/AndroidCodeModal';
 import { EvaluationGuideModal } from './components/EvaluationGuideModal';
 import { fetchProductByBarcode, searchProducts } from './services/openFoodFacts';
 import { 
@@ -31,7 +30,6 @@ export default function App() {
   // Modals state
   const [isScannerOpen, setIsScannerOpen] = useState(false);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
-  const [isAndroidCodeOpen, setIsAndroidCodeOpen] = useState(false);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
 
   // Selected Product & History & Favorites
@@ -167,7 +165,6 @@ export default function App() {
         onLanguageChange={handleLanguageChange}
         onOpenScanner={() => setIsScannerOpen(true)}
         onOpenGuide={() => setIsGuideOpen(true)}
-        onOpenAndroidCode={() => setIsAndroidCodeOpen(true)}
         activeTab={activeTab}
         onSelectTab={setActiveTab}
       />
@@ -250,16 +247,6 @@ export default function App() {
             <Heart className={`w-5 h-5 ${activeTab === 'favorites' ? 'fill-emerald-700' : ''}`} />
             <span className="text-[11px]">{t.favorites}</span>
           </button>
-
-          {/* Android Code Project Button */}
-          <button
-            onClick={() => setIsAndroidCodeOpen(true)}
-            className="flex flex-col items-center gap-1 py-1 px-3 rounded-2xl text-slate-500 hover:text-emerald-700 transition-all"
-            title={t.androidTitle}
-          >
-            <Smartphone className="w-5 h-5 text-emerald-600" />
-            <span className="text-[11px]">Android</span>
-          </button>
         </div>
       </nav>
 
@@ -282,12 +269,6 @@ export default function App() {
           setIsDetailOpen(false);
           setIsGuideOpen(true);
         }}
-      />
-
-      <AndroidCodeModal
-        isOpen={isAndroidCodeOpen}
-        onClose={() => setIsAndroidCodeOpen(false)}
-        language={language}
       />
 
       <EvaluationGuideModal

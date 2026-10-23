@@ -1,0 +1,51 @@
+name: Build Android AAB for Google Play
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-aab:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Bubblewrap CLI
+        run: npm install -g @bubblewrap/cli
+
+      - name: Generate Android App Bundle (.aab)
+        run: |
+          mkdir -p android-build
+          cd android-build
+          
+          # Initialize keystore
+          keytool -genkeypair -v -keystore release.keystore -alias clairproduit -keyalg RSA -keysize 2048 -validity 10000 -storepass clairproduit123 -keypass clairproduit123 -dname "CN=ClairProduit, OU=App, O=ClairProduit, L=Casablanca, ST=Casablanca, C=MA"
+          
+          # Initialize TWA Android Project non-interactively
+          npx @bubblewrap/cli init --manifest=https://clair-produit-1a3ivn8vn-khalid-999b.vercel.app/manifest.webmanifest --directory=.
+          
+          # Build signed AAB
+          npx @bubblewrap/cli build --skipPwaValidation || true
+          
+          # Look for generated AAB
+          find . -name "*.aab" -exec cp {} ../clairproduit.aab \;
+
+      - name: Upload AAB Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: clairproduit-google-play-aab
+          path: clairproduit.aab
