@@ -1,8 +1,10 @@
 {
-  "name": "ClairProduit - Scanner & Analyseur de Produits",
+  "id": "/",
+  "name": "ClairProduit - Scanner & Analyseur International de Produits",
   "short_name": "ClairProduit",
-  "description": "Scannez et analysez la composition et la qualité des aliments, boissons, cosmétiques et soins au Maroc et à l'international.",
+  "description": "Scannez et analysez la composition et la qualité des aliments, boissons, cosmétiques et soins.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#10b981",
@@ -12,9 +14,15 @@
   "icons": [
     {
       "src": "/icon.svg",
-      "sizes": "192x192 512x512 any",
+      "sizes": "192x192 512x512",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ],
   "categories": ["shopping", "food", "health", "lifestyle"]

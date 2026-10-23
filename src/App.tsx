@@ -12,6 +12,7 @@ import { BarcodeScannerModal } from './components/BarcodeScannerModal';
 import { ProductDetailModal } from './components/ProductDetailModal';
 import { HistoryAndFavorites } from './components/HistoryAndFavorites';
 import { EvaluationGuideModal } from './components/EvaluationGuideModal';
+import { InstallAppBanner } from './components/InstallAppBanner';
 import { fetchProductByBarcode, searchProducts } from './services/openFoodFacts';
 import { 
   getStoredLanguage, saveStoredLanguage, 
@@ -276,6 +277,9 @@ export default function App() {
         onClose={() => setIsGuideOpen(false)}
         language={language}
       />
+
+      {/* Proactive Android PWA Install Banner */}
+      <InstallAppBanner language={language} />
     </div>
   );
 }
